@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mx-auto p-6">
+
+    <h2 class="text-2xl font-bold mb-6">
+
+        Notifications
+
+    </h2>
+
+    <div class="bg-white rounded shadow">
+
+        {% for notification in notifications %}
+
+        <div class="border-b p-4">
+
+            <h4 class="font-semibold">
+
+                {{ notification.title }}
+
+            </h4>
+
+            <p>
+
+                {{ notification.message }}
+
+            </p>
+
+            <small class="text-gray-500">
+
+                {{ notification.created_at }}
+
+            </small>
+
+        </div>
+
+        {% empty %}
+
+        <div class="p-6 text-center">
+
+            No notifications.
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

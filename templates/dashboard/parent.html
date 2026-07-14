@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-6xl mx-auto p-6">
+
+    <h1 class="text-3xl font-bold text-blue-900 mb-6">
+        Parent Dashboard
+    </h1>
+
+    {% if children %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {% for child in children %}
+
+                <div class="bg-white p-6 shadow-lg rounded-2xl border border-gray-100">
+
+                    <!-- STUDENT INFO -->
+                    <div class="flex items-center space-x-4 mb-4">
+
+                        {% if child.passport %}
+
+                            <img
+                                src="{{ child.passport.url }}"
+                                alt="Student Passport"
+                                class="w-20 h-20 rounded-full object-cover border-4 border-blue-800"
+                            >
+
+                        {% else %}
+
+                            <div class="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">
+                                No Image
+                            </div>
+
+                        {% endif %}
+
+                        <div>
+
+                            <h2 class="text-xl font-bold text-blue-900">
+                                {{ child.user.get_full_name }}
+                            </h2>
+
+                            <p class="text-gray-600">
+                                Reg No:
+                                {{ child.registration_number }}
+                            </p>
+
+                            <p class="text-gray-600">
+                                Class:
+                                {{ child.classroom }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="flex flex-wrap gap-3 mt-4">
+
+                        {% if child and child.id %}
+                            <a href="{% url 'academics:student_results' child.id %}">
+                                View Results
+                            </a>
+                        {% endif %}
+
+                        <a href="{% url 'academics:report_card' child.id %}"
+                           class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow">
+
+                            Download Report Card
+
+                        </a>
+
+                        <a href="{% url 'communication:create_conversation' %}"
+                           class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg shadow">
+
+                            Message Teacher
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="bg-red-100 text-red-700 p-4 rounded-lg">
+
+            No children linked to this parent account.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

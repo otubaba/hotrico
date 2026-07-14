@@ -1,0 +1,10 @@
+{% for student in students %}
+<div class="bg-white p-3 mb-2">
+    <h3>{{ student.user.username }}</h3>
+
+    <a href="{% url 'student_detail' student.id %}"
+       class="text-blue-500">
+        Manage Results
+    </a>
+</div>
+{% endfor %}

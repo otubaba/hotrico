@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">
+            Inbox
+        </h2>
+
+        <a href="{% url 'communication:create_conversation' %}"
+           class="bg-blue-600 text-white px-4 py-2 rounded">
+            New Message
+        </a>
+    </div>
+
+    <div class="bg-white shadow rounded">
+
+        {% for conversation in conversations %}
+
+        <a href="{% url 'communication:chat_room' conversation.id %}"
+           class="block border-b p-4 hover:bg-gray-50">
+
+            <div class="flex justify-between">
+
+                <div>
+
+                    <h4 class="font-semibold">
+                        {{ conversation.title|default:"Conversation" }}
+                    </h4>
+
+                    {% with conversation.messages.last as last_message %}
+                        {% if last_message %}
+                            <p class="text-gray-500 text-sm">
+                                {{ last_message.sender }}:
+                                {{ last_message.content|truncatechars:50 }}
+                            </p>
+                        {% endif %}
+                    {% endwith %}
+
+                </div>
+
+                <small>
+                    {{ conversation.created_at|date:"M d" }}
+                </small>
+
+            </div>
+
+        </a>
+
+        {% empty %}
+
+        <div class="p-6 text-center text-gray-500">
+            No messages found.
+        </div>
+
+        {% endfor %}
+
+        <!-- {% for conversation in conversations %}
+        <a href="{% url 'communication:chat_room' conversation.id %}"
+        class="block p-3 border rounded mb-2">
+            {{ conversation.title|default:"Conversation" }}
+        </a>
+        {% empty %}
+            <p>No conversations yet.</p>
+        {% endfor %} -->
+    </div>
+
+</div>
+{% endblock %}

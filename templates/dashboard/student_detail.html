@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto p-6">
+
+    <!-- STUDENT PROFILE -->
+    <div class="bg-white shadow-lg rounded-lg p-6">
+
+        <div class="flex flex-col md:flex-row items-center gap-6">
+
+            <!-- PASSPORT -->
+            <div>
+
+                {% if student.passport %}
+                    <img src="{{ student.passport.url }}"
+                         alt="{{ student.user.get_full_name }}"
+                         class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow">
+                {% else %}
+                    <div class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center">
+                        No Image
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <!-- DETAILS -->
+            <div>
+
+                <h1 class="text-3xl font-bold text-gray-800">
+                    {{ student.user.get_full_name }}
+                </h1>
+
+                <p class="mt-2 text-gray-600">
+                    <strong>Registration No:</strong>
+                    {{ student.registration_number }}
+                </p>
+
+                <p class="text-gray-600">
+                    <strong>Class:</strong>
+                    {{ student.classroom }}
+                </p>
+
+                <p class="text-gray-600">
+                    <strong>Username:</strong>
+                    {{ student.user.username }}
+                </p>
+
+            </div>
+            <div class="mt-4 border-t pt-4">
+
+    <h3 class="text-lg font-semibold text-blue-700 mb-2">
+        Parent Information
+    </h3>
+
+    {% if parent %}
+
+        <p>
+            <strong>Name:</strong>
+            {{ parent.user.get_full_name }}
+        </p>
+
+        <p>
+            <strong>Username:</strong>
+            {{ parent.user.username }}
+        </p>
+
+        <p>
+            <strong>Phone:</strong>
+            {{ parent.phone|default:"Not Provided" }}
+        </p>
+
+        <p>
+            <strong>Occupation:</strong>
+            {{ parent.occupation|default:"Not Provided" }}
+        </p>
+
+    {% else %}
+
+        <p class="text-red-600">
+            Parent not assigned
+        </p>
+
+    {% endif %}
+    {% if parent %}
+<a href="{% url 'communication:message_parent' parent.id %}"
+   class="inline-block mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+    Message Parent
+</a>
+{% endif %}
+</div>
+        </div>
+
+    </div>
+
+    <!-- CHAT BUTTON -->
+    <div class="mt-6">
+
+        <a href="{% url 'communication:message_student' student.id %}"
+           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg shadow">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="h-5 w-5"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4-.8L3 20l1.8-3.6A7.964 7.964 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+
+            Message Student
+
+        </a>
+
+    </div>
+
+<!-- <div class="bg-gray-50 p-4 rounded mt-4">
+
+    <h3 class="font-bold">Parent Information</h3>
+
+    {% if parent %}
+        <p><strong>Name:</strong> {{ parent.user.get_full_name }}</p>
+        <p><strong>Phone:</strong> {{ parent.phone }}</p>
+        <p><strong>Occupation:</strong> {{ parent.occupation }}</p>
+
+        <a href="{% url 'communication:message_parent' parent.id %}"
+           class="mt-3 inline-block bg-purple-600 text-white px-4 py-2 rounded">
+            Message Parent
+        </a>
+
+    {% else %}
+        <p class="text-red-600">No parent assigned.</p>
+    {% endif %}
+
+</div> -->
+
+    <!-- RESULTS SECTION -->
+    <div class="mt-8 bg-white shadow-lg rounded-lg p-6">
+
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+
+            <h2 class="text-2xl font-semibold">
+                Registered Courses & Results
+            </h2>
+
+            <a href="{% url 'academics:result_list' %}"
+               class="mt-3 md:mt-0 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">
+
+                View All Results
+
+            </a>
+
+        </div>
+
+        <div class="overflow-x-auto">
+
+            <table class="min-w-full border border-gray-200">
+
+                <thead class="bg-gray-100">
+
+                    <tr>
+                        <th class="p-3 border text-left">Subject</th>
+                        <th class="p-3 border text-center">Test</th>
+                        <th class="p-3 border text-center">Exam</th>
+                        <th class="p-3 border text-center">Total</th>
+                        <th class="p-3 border text-center">Grade</th>
+                        <th class="p-3 border text-center">Remark</th>
+                        <th class="p-3 border text-center">Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for reg in registrations %}
+
+                    <tr class="hover:bg-gray-50">
+
+                        <td class="p-3 border">
+                            {{ reg.subject.name }}
+                        </td>
+
+                        <td class="p-3 border text-center">
+                            {{ reg.result.test|default:"-" }}
+                        </td>
+
+                        <td class="p-3 border text-center">
+                            {{ reg.result.exam|default:"-" }}
+                        </td>
+
+                        <td class="p-3 border text-center font-semibold">
+                            {{ reg.result.total|default:"-" }}
+                        </td>
+
+                        <td class="p-3 border text-center">
+                            {{ reg.result.grade|default:"-" }}
+                        </td>
+
+                        <td class="p-3 border text-center">
+                            {{ reg.result.remark|default:"-" }}
+                        </td>
+
+                        <td class="p-3 border">
+
+                            <div class="flex flex-wrap gap-2 justify-center">
+
+                                {% if reg.result %}
+
+                                    <a href="{% url 'result_edit' reg.result.id %}"
+                                       class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">
+
+                                        Edit
+
+                                    </a>
+
+                                    <a href="{% url 'result_delete' reg.result.id %}"
+                                       class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">
+
+                                        Delete
+
+                                    </a>
+
+                                {% else %}
+
+                                    <a href="{% url 'academics:add_result' reg.id %}"
+                                       class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm">
+
+                                        Fill Result
+
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="7" class="text-center p-6 text-gray-500">
+                            No registered courses found.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

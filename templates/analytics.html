@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-xl font-bold">Performance Chart</h2>
+
+<canvas id="chart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+new Chart(document.getElementById('chart'), {
+    type: 'bar',
+    data: {
+        labels: {{ subjects|safe }},
+        datasets: [{
+            label: 'Scores',
+            data: {{ scores|safe }}
+        }]
+    }
+});
+</script>
+
+{% endblock %}

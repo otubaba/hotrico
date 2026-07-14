@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ conversation.title }}</h2>
+
+<div class="space-y-3">
+
+    {% for message in messages %}
+
+        <div>
+
+            <strong>
+                {{ message.sender.get_full_name }}
+            </strong>
+
+            <p>
+                {{ message.content }}
+            </p>
+
+            <small>
+                {{ message.created_at }}
+            </small>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <textarea
+        name="content"
+        rows="3"
+        class="w-full border rounded p-2"
+        required>
+    </textarea>
+
+    <button
+        type="submit"
+        class="bg-blue-600 text-white px-4 py-2 rounded">
+
+        Send
+
+    </button>
+</form>
+{% endblock %}

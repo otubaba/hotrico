@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mx-auto p-6">
+
+    <div class="bg-white shadow rounded p-6">
+
+        <h2 class="text-xl font-bold mb-4">
+
+            New Message
+
+        </h2>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <div class="mb-4">
+
+                <label class="block mb-2">
+                    Conversation Title
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    class="border rounded w-full p-2">
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="block mb-2">
+
+                    Recipients
+
+                </label>
+
+                <select
+                    name="participants"
+                    multiple
+                    class="border rounded w-full p-2 h-48">
+
+                    {% for user in users %}
+
+                        <option value="{{ user.id }}">
+                            {{ user.get_full_name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <button
+                class="bg-green-600 text-white px-6 py-2 rounded">
+
+                Create Conversation
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

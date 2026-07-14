@@ -1,0 +1,453 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Holy Trinity College, Mbiakong
+{% endblock %}
+
+{% block content %}
+
+<!-- ========================= -->
+<!-- HERO SECTION -->
+<!-- ========================= -->
+
+<section
+class="relative h-screen bg-cover bg-center"
+
+style="background-image:url('{% static "images/school.png" %}')">
+
+<div
+class="absolute inset-0 bg-black/60">
+
+<div
+class="max-w-7xl mx-auto h-full flex items-center px-8">
+
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+
+<div>
+
+<span
+class="bg-red-900 text-white px-4 py-2 rounded-full">
+
+WELCOME TO
+
+</span>
+
+<h1
+class="mt-6 text-6xl font-extrabold text-white">
+
+HOLY TRINITY
+
+<br>
+
+COLLEGE
+
+</h1>
+
+<h2
+class="text-3xl text-yellow-400 font-semibold mt-3">
+
+MBIAKONG
+
+</h2>
+
+<p
+class="mt-6 text-lg text-gray-200 leading-8">
+
+Raising future leaders through academic excellence,
+
+moral discipline,
+
+innovation,
+
+and Christian values.
+
+</p>
+
+<div class="mt-10 flex gap-4">
+
+<a href="#admission"
+
+class="bg-primary text-white px-8 py-4 rounded-lg">
+
+Apply Now
+
+</a>
+
+<a href="{% url 'login' %}"
+
+class="bg-white text-primary px-8 py-4 rounded-lg">
+
+Student Portal
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hidden lg:flex justify-center">
+
+<img
+
+src="{% static 'images/students.png' %}"
+
+class="w-96 drop-shadow-2xl animate-pulse">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- QUICK FEATURES -->
+<!-- ========================= -->
+
+<section class="bg-white py-12">
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+<div class="text-center">
+
+<div class="text-5xl text-primary">
+
+🎓
+
+</div>
+
+<h3 class="font-bold text-xl mt-4">
+
+Qualified Teachers
+
+</h3>
+
+</div>
+
+<div class="text-center">
+
+<div class="text-5xl text-primary">
+
+💻
+
+</div>
+
+<h3 class="font-bold text-xl mt-4">
+
+ICT Laboratory
+
+</h3>
+
+</div>
+
+<div class="text-center">
+
+<div class="text-5xl text-primary">
+
+📚
+
+</div>
+
+<h3 class="font-bold text-xl mt-4">
+
+Modern Library
+
+</h3>
+
+</div>
+
+<div class="text-center">
+
+<div class="text-5xl text-primary">
+
+⚽
+
+</div>
+
+<h3 class="font-bold text-xl mt-4">
+
+Sports
+
+</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ABOUT -->
+<!-- ========================= -->
+
+<section class="py-24 bg-gray-50">
+
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+<img
+
+src="{% static 'images/students.png' %}"
+
+class="rounded-xl shadow-xl">
+
+<div>
+
+<h2 class="text-4xl font-bold text-primary">
+
+Welcome to Holy Trinity College
+
+</h2>
+
+<p class="mt-8 text-lg leading-8 text-gray-600">
+
+Holy Trinity College, Mbiakong is committed to providing quality education in an environment that promotes discipline, excellence, innovation, and Christian values. We nurture learners to become responsible leaders equipped with the knowledge and character to make meaningful contributions to society.
+
+</p>
+
+<a href="#"
+
+class="mt-8 inline-block bg-primary text-white px-8 py-3 rounded-lg">
+
+Read More
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ACADEMIC PROGRAMMES -->
+<!-- ========================= -->
+
+<section class="py-24">
+
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center text-primary">
+
+Academic Programmes
+
+</h2>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-14">
+
+{% for item in "1234" %}
+
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+
+<img
+
+src="{% static 'images/logo1.png' %}"
+
+class="h-56 w-full object-cover">
+
+<div class="p-6">
+
+<h3 class="font-bold text-2xl">
+
+Programme
+
+</h3>
+
+<p class="mt-4 text-gray-600">
+
+Quality education with experienced teachers.
+
+</p>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- SCHOOL STATISTICS -->
+<!-- ========================= -->
+
+<section class="bg-primary py-20 text-white">
+
+<div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+
+<div>
+
+<h2 class="text-5xl font-bold">
+
+1500+
+
+</h2>
+
+<p>
+
+Students
+
+</p>
+
+</div>
+
+<div>
+
+<h2 class="text-5xl font-bold">
+
+85+
+
+</h2>
+
+<p>
+
+Teachers
+
+</p>
+
+</div>
+
+<div>
+
+<h2 class="text-5xl font-bold">
+
+30+
+
+</h2>
+
+<p>
+
+Years
+
+</p>
+
+</div>
+
+<div>
+
+<h2 class="text-5xl font-bold">
+
+98%
+
+</h2>
+
+<p>
+
+Success Rate
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- LATEST NEWS -->
+<!-- ========================= -->
+
+<section class="py-24 bg-gray-100">
+
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-4xl font-bold text-primary mb-10">
+
+Latest News
+
+</h2>
+
+<div class="grid lg:grid-cols-3 gap-10">
+
+{% for news in latest_news %}
+
+<div class="bg-white rounded-xl overflow-hidden shadow">
+
+<img
+
+src="{{ news.image.url }}"
+
+class="h-56 w-full object-cover">
+
+<div class="p-6">
+
+<h3 class="font-bold text-2xl">
+
+{{ news.title }}
+
+</h3>
+
+<p class="mt-4">
+
+{{ news.summary }}
+
+</p>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="col-span-3 text-center text-gray-500">
+
+No news available.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ADMISSION -->
+<!-- ========================= -->
+
+<section id="admission"
+
+class="bg-yellow-500 py-20">
+
+<div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-center">
+
+<div>
+
+<h2 class="text-5xl font-bold">
+
+Admissions Open
+
+</h2>
+
+<p class="text-xl mt-3">
+
+2026 / 2027 Academic Session
+
+</p>
+
+</div>
+
+<a
+
+href="#"
+
+class="bg-primary text-white px-10 py-4 rounded-lg">
+
+Apply Now
+
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}

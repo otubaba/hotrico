@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mx-auto p-6">
+
+    <div class="flex justify-between mb-6">
+
+        <h2 class="text-2xl font-bold">
+
+            Class Messages
+
+        </h2>
+
+        <a href="{% url 'communication:create_class_message' %}"
+           class="bg-blue-600 text-white px-4 py-2 rounded">
+
+            New Broadcast
+
+        </a>
+
+    </div>
+
+    <div class="bg-white rounded shadow">
+
+        {% for conversation in class_conversations %}
+
+            <a href="{% url 'communication:chat_room' conversation.id %}"
+               class="block p-4 border-b hover:bg-gray-50">
+
+                <h4 class="font-semibold">
+
+                    {{ conversation.title }}
+
+                </h4>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

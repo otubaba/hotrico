@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-xl font-bold">Results</h2>
+
+<table class="w-full bg-white mt-4">
+<tr>
+    <th>Subject</th>
+    <th>Score</th>
+</tr>
+
+{% for r in results %}
+<tr>
+    <td>{{ r.subject.name }}</td>
+    <td>{{ r.total }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
+
+
+
+
+
+
+<h2>Students</h2>
+
+{% for student in students %}
+
+    <div class="mb-3">
+
+        <span>{{ student.name }}</span>
+
+        <a href="{% url 'generate_report' student.id %}"
+           class="bg-green-600 text-white px-3 py-1 rounded">
+
+           Download Report
+
+        </a>
+
+    </div>
+
+{% endfor %}

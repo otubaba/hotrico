@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-6xl mx-auto mt-10">
+
+    <h1 class="text-3xl font-bold mb-6">
+        Teacher Dashboard
+    </h1>
+    <h2 class="text-xl font-bold mb-4">My Students</h2>
+
+
+{% if students %}
+
+<table class="w-full bg-white shadow rounded">
+
+    <thead class="bg-gray-200">
+        <tr>
+            <th class="p-2">Name</th>
+            <th class="p-2">Class</th>
+            <th class="p-2">Registration No</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for s in students %}
+    <tr class="border-t">
+
+        <td class="p-2">
+            <a href="{% url 'student_detail' s.id %}"
+               class="text-blue-600 hover:underline font-medium">
+
+                {{ s.user.get_full_name }}
+
+            </a>
+        </td>
+
+        <td class="p-2">{{ s.classroom }}</td>
+
+        <td class="p-2">
+            {{ s.registration_number }}
+        </td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+
+</table>
+
+{% else %}
+
+<p class="text-red-500">No students found in your class.</p>
+
+{% endif %}
+    {% if registrations %}
+
+        {% for reg in registrations %}
+
+        <div class="bg-white shadow rounded-xl p-5 mb-4">
+
+            <h2 class="text-xl font-semibold">
+                {{ reg.student }}
+            </h2>
+
+            <p class="text-gray-600">
+                Subject: {{ reg.subject }}
+            </p>
+
+            <a href="{% url 'add_result' reg.id %}"
+               class="bg-blue-600 text-white px-4 py-2 rounded mt-3 inline-block">
+               Add Result
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="bg-yellow-100 text-yellow-800 p-4 rounded">
+            No registrations found.
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+{% for classroom in classrooms %}
+    <a href="{% url 'communication:message_class' classroom.id %}"
+       class="inline-block bg-green-600 text-white px-4 py-2 rounded mr-2 mb-2">
+        Message {{ classroom.name }}
+    </a>
+{% empty %}
+    <p>No class assigned.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="p-6">
+
+    <h1 class="text-3xl font-bold mb-6">
+        Students
+    </h1>
+
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+
+        <table class="w-full">
+
+            <thead class="bg-gray-100">
+
+                <tr>
+
+                    <th class="p-3 border">Name</th>
+                    <th class="p-3 border">Reg No</th>
+                    <th class="p-3 border">Class</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td class="p-3 border">
+                        <a href="{% url 'student_detail' student.id %}"
+                        class="text-blue-600 hover:underline font-semibold">
+
+                            {{ student.user.get_full_name }}
+
+                        </a>
+                    </td>
+
+                    <td class="p-3 border">
+                        {{ student.registration_number }}
+                    </td>
+
+                    <td class="p-3 border">
+                        {{ student.classroom }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

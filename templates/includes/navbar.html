@@ -1,0 +1,84 @@
+{% load static %}
+
+<nav
+class="bg-white shadow-lg sticky top-0 z-50">
+
+<div
+class="max-w-7xl mx-auto px-6">
+
+<div
+class="flex justify-between items-center h-20">
+
+<!-- Logo -->
+
+<a href="{% url 'home' %}"
+
+class="flex items-center gap-3">
+
+<img
+src="{% static 'images/logo1.png' %}"
+
+class="h-14">
+
+<div>
+
+<h1
+class="font-bold text-xl text-primary">
+
+HOLY TRINITY COLLEGE
+
+</h1>
+
+<p
+class="text-sm text-gray-500">
+
+Facere et Docere
+
+</p>
+
+</div>
+
+</a>
+
+<!-- Desktop Menu -->
+
+<div
+class="hidden lg:flex items-center gap-8">
+
+<a href="/">Home</a>
+
+<a href="#">About</a>
+
+<a href="#">Academics</a>
+
+<a href="#">Admissions</a>
+
+<a href="#">Facilities</a>
+
+<a href="#">Gallery</a>
+
+<a href="#">News</a>
+
+<a href="#">Contact</a>
+
+</div>
+
+<div
+class="hidden lg:flex gap-3">
+
+<a
+href="#"
+
+class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-red-900 transition">
+
+Student Portal
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
