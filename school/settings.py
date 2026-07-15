@@ -35,8 +35,8 @@ ALLOWED_HOSTS = env.list(
     default=[
         "127.0.0.1",
         "localhost",
-        ".onrender.com",
-    ],
+        "holytrinitycollege.onrender.com",
+    ]
 )
 
 
